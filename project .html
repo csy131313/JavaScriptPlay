@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>שלום כיתה א'📖!</title>
+</head>
+
+<body>
+
+  <h1>שלום כיתה א'</h1>
+  <input type="button" value="התחלת משחק" id="n1">
+  <div id="dt"> <input type="checkbox" value="טיימר" id="t123"> טיימר</div>
+
+  <div id="d1"></div>
+
+  <div id="d2"></div>
+
+  <div id="d3"></div>
+  <div id="d5"></div>
+  <div id="d4"></div>
+
+  <script>
+
+    let arr_t = [];
+    let arr_f = [];
+    let sum = 0;
+    let t;
+    let flag;
+    let tt;
+    // האזנה ללחיצה על כפתור התחלת משחק
+    document.getElementById("n1").addEventListener("click", start);
+
+    // פונקצית התחלת משחק
+    function start() {
+      sum = 0;
+
+      // הסרת כפתור ההתחלה
+      document.body.removeChild(document.getElementById("n1"));
+
+
+      // הוספת כותרת משנה
+      let y1 = "מה נכניס לילקוט?";
+      let t1 = document.createTextNode(y1);
+      let x1 = document.createElement("h2");
+      x1.appendChild(t1);
+      document.getElementById("d1").appendChild(x1);
+      x1.setAttribute("id", "text1");
+      x1.classList.add("caption");
+
+      // הוספת כותרת משנה נוספת
+      let y3 = "גרור לילקוט רק את החפצים שמתאים להביא לבית הספר!";
+      let t3 = document.createTextNode(y3);
+      let x3 = document.createElement("h3");
+      x3.appendChild(t3);
+      document.getElementById("d1").appendChild(x3);
+      x3.setAttribute("id", "text3");
+      x3.classList.add("caption");
+      // הוספת הודעה על הניקוד
+      let y2 = "מספר הנקודות שלך הוא: "
+      let t2 = document.createTextNode(y2 + sum);
+      let x2 = document.createElement("h3");
+      x2.appendChild(t2);
+      document.getElementById("d3").appendChild(x2);
+      x2.setAttribute("id", "text2");
+      x2.classList.add("caption");
+
+
+      // הוספת טיימר רק אם סומנ תיבת הבחירה
+
+      let checkBox = document.getElementById("t123");
+      if (checkBox.checked == true) {
+        document.getElementById("d5").innerText = 20;
+        document.getElementById("d5").classList.add("caption");
+        tt = setInterval("timer()", 1000);
+        document.body.removeChild(document.getElementById("dt"));
+        flag = 1;
+      }
+      else {
+        document.body.removeChild(document.getElementById("dt"));
+        document.getElementById("d5").classList.add("caption");
+        flag = 0;
+      }
+
+
+      // הוספת תמונת ילקוט
+      let img = document.createElement("img");
+      img.src = 'ילקוט.png';
+      img.setAttribute("id", "m");
+      document.getElementById("d2").appendChild(img);
+      img.classList.add("caption");
+
+
+      // הוספת התמונות של כל החפצים
+      let img1 = document.createElement("img");
+      img1.src = 'בובה.jpg';
+      img1.setAttribute("id", "m1");
+      img1.classList.add("img-f");
+      document.getElementById("d1").appendChild(img1);
+      arr_f.push(img1);
+
+
+      let img2 = document.createElement("img");
+      img2.src = 'בקבוק.png';
+      img2.setAttribute("id", "m2");
+      img2.classList.add("img-t");
+      document.getElementById("d1").appendChild(img2);
+      arr_t.push(img2);
+
+      let img3 = document.createElement("img");
+      img3.src = 'גמבוי.png';
+      img3.setAttribute("id", "m3");
+      img3.classList.add("img-f");
+      document.getElementById("d1").appendChild(img3);
+      arr_f.push(img3);
+
+      let img4 = document.createElement("img");
+      img4.src = 'כדור.png';
+      img4.setAttribute("id", "m4");
+      img4.classList.add("img-f");
+      document.getElementById("d1").appendChild(img4);
+      arr_f.push(img4);
+
+      let img5 = document.createElement("img");
+      img5.src = 'לגו.png';
+      img5.setAttribute("id", "m5");
+      img5.classList.add("img-f");
+      document.getElementById("d1").appendChild(img5);
+      arr_f.push(img5);
+
+      let img6 = document.createElement("img");
+      img6.src = 'מגבת.png';
+      img6.setAttribute("id", "m6");
+      img6.classList.add("img-t");
+      document.getElementById("d1").appendChild(img6);
+      arr_t.push(img6);
+      arr_f.splice(4, 1);
+
+      let img7 = document.createElement("img");
+      img7.src = 'מחברת.png';
+      img7.setAttribute("id", "m7");
+      img7.classList.add("img-t");
+      img7.draggable = true;
+      img7.addEventListener("dragstart", dragStart);
+      document.getElementById("d1").appendChild(img7);
+      arr_t.push(img7);
+
+      let img8 = document.createElement("img");
+      img8.src = 'מכשירי כתיבה.png';
+      img8.setAttribute("id", "m8");
+      img8.classList.add("img-t");
+      img8.draggable = true;
+      img8.addEventListener("dragstart", dragStart);
+      document.getElementById("d1").appendChild(img8);
+      arr_t.push(img8);
+
+      let img9 = document.createElement("img");
+      img9.src = 'ספרים.png';
+      img9.setAttribute("id", "m9");
+      img9.classList.add("img-t");
+      img9.draggable = true;
+      img9.addEventListener("dragstart", dragStart);
+      document.getElementById("d1").appendChild(img9);
+      arr_t.push(img9);
+
+      let img10 = document.createElement("img");
+      img10.src = 'קלמר.png';
+      img10.setAttribute("id", "m10");
+      img10.classList.add("img-t");
+      img10.draggable = true;
+      img10.addEventListener("dragstart", dragStart);
+      document.getElementById("d1").appendChild(img10);
+      arr_t.push(img10);
+      // אפשור גיררה לכל התמונות
+      img1.draggable = true;
+      img2.draggable = true;
+      img3.draggable = true;
+      img4.draggable = true;
+      img5.draggable = true;
+      img6.draggable = true;
+      img7.draggable = true;
+      img8.draggable = true;
+      img9.draggable = true;
+      img10.draggable = true;
+      img1.addEventListener("dragstart", dragStart);
+      img2.addEventListener("dragstart", dragStart);
+      img3.addEventListener("dragstart", dragStart);
+      img4.addEventListener("dragstart", dragStart);
+      img5.addEventListener("dragstart", dragStart);
+      img6.addEventListener("dragstart", dragStart);
+      img7.addEventListener("dragstart", dragStart);
+      img8.addEventListener("dragstart", dragStart);
+      img9.addEventListener("dragstart", dragStart);
+      img10.addEventListener("dragstart", dragStart);
+
+
+      // אפשור גרירה ל-דיו
+      let d2 = document.getElementById("d2");
+      d2.addEventListener("dragover", allowDrop);
+      d2.addEventListener("drop", drop);
+      function allowDrop(ev) {
+        ev.preventDefault();
+      }
+      function dragStart(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+      }
+      let d3 = document.getElementById("d3");
+      d3.addEventListener("dragover", allowDrop);
+      d3.addEventListener("drop", drop);
+      // פונקציית גרירה
+      function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var draggedElement = document.getElementById(data);
+
+        // בדיקה האם החפ שייך לבית הספר
+        if (draggedElement.classList.contains("img-t")) {
+          // הוספת נקודות
+          sum += 10;
+          // מחיאת כפיים
+          let timer, timer2, timer3;
+          let imggif;
+          addImg();
+          timer = setTimeout(removeImg, 3000);
+          // גרירת התמונה
+          function addImg() {
+            imggif = document.createElement("img");
+            imggif.src = '1f44f.gif';
+            imggif.setAttribute("id", "mg");
+            document.getElementById("d4").appendChild(imggif);
+          }
+          // הסרת התמונה מהדיו הקודם
+          function removeImg() {
+            document.getElementById("d4").removeChild(imggif);
+          }
+          ev.target.appendChild(draggedElement);
+          // אם התמונה לא מתאימה
+        } else {
+          // הורדת ניקוד
+          sum -= 5;
+        }
+        // עידכון הנקודות בכיתוב
+        x2.textContent = y2 + sum;
+        //בדיקה האם המשחק אמור להסתיים
+        check();
+      }
+    }
+    // פונקציית הבדיקה
+    function check() {
+      let validImagesLeft = arr_t.some(function (img) {
+        return img.parentNode === document.getElementById("d1");
+      });
+      // אם הפסיד
+      if (sum <= 0) {
+        document.getElementById("text2").innerHTML = "המשחק הסתיים, נסה שוב!";
+        // אם יש טיימר
+        if (flag == 1) {
+          // עצירת הטיימר
+          clearInterval(tt);
+          document.getElementById("d5").innerText = " משך זמן נסיון המענה-   " + (20 - t) + "  שניות!   "
+
+        }
+        // הפעלת פונקציית הסרת תמונות וכיתובים והוספת כפתורים חדשים
+        timer2 = setTimeout(removeImages, 3000);
+        timer3 = setTimeout(showStartButton, 3000);
+        // אם נצח
+      } else if (sum >= 60) {
+        document.getElementById("text2").innerHTML = "סיימת את המשחק בהצלחה מרובה!";
+        // אם קיים טיימר
+        if (flag == 1) {
+          // עצירה של הטיימר
+          clearInterval(tt);
+          document.getElementById("d5").innerText = "  הצלחת ב-   " + (20 - t) + "  שניות!   "
+
+        }
+        // הפעלת פונקציית הסרת תמונות וכיתובים והוספת כפתורים חדשים
+        timer3 = setTimeout(showStartButton, 3000);
+        timer2 = setTimeout(removeImages, 3000);
+        // אם בסוף הצליח לקחת את כל התמונות הנכונות אך גם פישל (נשארו רק תמונות א טובות)
+      } else if (!validImagesLeft) {
+        document.getElementById("text2").innerHTML = "סיימת את המשחק ב- " + sum + " נקודות!";
+        // אם קיים טיימר
+        if (flag == 1) {
+          // אם קיים טיימר
+          clearInterval(tt);
+          document.getElementById("d5").innerText = "  הצלחת ב-   " + (20 - t) + "  שניות!   "
+          // 
+
+        }
+        // הפעלת פונקציית הסרת תמונות וכיתובים והוספת כפתורים חדשים
+        timer2 = setTimeout(removeImages, 3000);
+        timer3 = setTimeout(showStartButton, 3000);
+      }
+    }
+    // פונקציית הסרת תמונות וכיתובים
+    function removeImages() {
+      var images = document.querySelectorAll(".img-t, .img-f");
+      var captions = document.querySelectorAll(".caption");
+      images.forEach(function (image) {
+        image.parentNode.removeChild(image);
+      });
+      captions.forEach(function (caption) {
+        caption.parentNode.removeChild(caption);
+      });
+    }
+    // פונקצית הוספת כפתור חדש
+    function showStartButton() {
+      // לא להוסיף כפתור כמה מים, אם הוא כבר קיים
+      let existingButton = document.getElementById("n1");
+      if (existingButton) {
+        existingButton.parentNode.removeChild(existingButton);
+      }
+
+      //  הוספת כיתוב
+      let y5 = "כמה טוב לשחק ולשנן שוב ושוב";
+      let t5 = document.createTextNode(y5);
+      let x5 = document.createElement("h3");
+      x5.appendChild(t5);
+      x5.setAttribute("id", "text5");
+      x5.classList.add("caption");
+      document.body.appendChild(x5);
+
+
+      //יצירת כפתור חדש
+      var y4 = "רוצה לשחק שוב?";
+      var x4 = document.createElement("input");
+      x4.setAttribute("type", "button");
+      x4.setAttribute("value", y4);
+      x4.setAttribute("id", "n10");
+      document.body.appendChild(x4);
+      document.getElementById("n10").addEventListener("click", () => {
+        location.reload();
+      });
+    }
+    // פונקציית טיימר
+    function timer() {
+      t = document.getElementById("d5").innerText;
+
+      console.log("timer")
+      console.log(document.getElementById("d5"))
+      if (t > 1) {
+
+        t -= 1;
+        document.getElementById("d5").innerText = t;
+      }
+      else {
+        clearInterval(tt);
+      }
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+#m{
+    width: 30%;
+}
+.img-t{
+
+    width: 5%;
+}
+.img-f{
+
+    width: 5%;
+}
+body{
+    text-align: center;
+    background-image: url('תמונת\ רקע1.jpg');
+    background-size: 100% ;
+    font: larger 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: deepskyblue;
+    border-color: 1px soild  blueviolet;
+}
+#n10{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+
+#n10 {
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
+	background-color:#b8e356;
+	border-radius:42px;
+	border:1px solid #83c41a;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:32px 15px;
+	text-decoration:none;
+	text-shadow:7px 4px 0px #86ae47;
+}
+#n10:hover {
+	background:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+	background-color:#a5cc52;
+}
+#n10:active {
+	position:relative;
+	top:1px;
+}
+
+
+        
+
+  
